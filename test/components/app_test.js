@@ -23,7 +23,7 @@ describe('<App />', () => {
     expect(wrapper).to.have.length(1);
   });
 
-  it('renders a </Header />', () => {
+  it('renders a <Header />', () => {
     expect(wrapper.contains(<Header />)).to.equal(true);
   });
 
