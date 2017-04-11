@@ -18,8 +18,18 @@ describe('<FileInputContainer />', () => {
   });
 
   it('renders a Dropzone', () => {
-    const input = wrapper.find(Dropzone);
-    expect(input).to.have.length(1);
+    const dropzone = wrapper.find(Dropzone);
+    expect(dropzone).to.have.length(1);
+  });
+
+  it('Sets Dropzone to only accept a single file', () => {
+    const dropzone = wrapper.find(Dropzone);
+    expect(dropzone.prop('multiple')).to.equal(false);
+  });
+
+  it('Sets Dropzone to only accept a .txt files', () => {
+    const dropzone = wrapper.find(Dropzone);
+    expect(dropzone.prop('accept')).to.equal('text/plain');
   });
 
 });

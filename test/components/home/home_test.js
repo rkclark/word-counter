@@ -22,7 +22,7 @@ describe('<Home />', () => {
     expect(container).to.have.length(1);
   });
 
-  it('renders a FileInputForm', () => {
+  it('renders a FileInputContainer', () => {
     expect(wrapper.contains(<FileInputContainer />)).to.equal(true);
   });
 
