@@ -23,7 +23,20 @@ describe('<Home />', () => {
   });
 
   it('renders a FileInputContainer', () => {
-    expect(wrapper.contains(<FileInputContainer />)).to.equal(true);
+    const container = wrapper.find(FileInputContainer);
+    expect(container).to.have.length(1);
+  });
+
+  it('passes setCountedWords function to FileInputContainer', () => {
+    const container = wrapper.find(FileInputContainer);
+    expect(container.prop('setCountedWords')).to.be.a('function');
+  });
+
+  describe('#setCountedWords', () => {
+    it('updates countedWords state', () => {
+      wrapper.instance().setCountedWords('test');
+      expect(wrapper.state('countedWords')).to.contain('test');
+    });
   });
 
 });

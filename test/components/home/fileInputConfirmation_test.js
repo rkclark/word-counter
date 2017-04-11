@@ -1,21 +1,25 @@
 /* eslint-disable padded-blocks, no-unused-expressions */
 import React from 'react';
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import sinon from 'sinon';
 import FileInputConfirmation from '../../../src/app/components/home/FileInputConfirmation';
 
 describe('<FileInputConfirmation />', () => {
 
   let wrapper;
   let props;
+  let setCountedWordsSpy;
 
   describe('When props.textFile contains text file data', () => {
 
     beforeEach(() => {
+      setCountedWordsSpy = sinon.spy();
       props = {
         textFile: [
           { name: 'test.txt' },
         ],
+        setCountedWords: setCountedWordsSpy,
       };
       wrapper = shallow(<FileInputConfirmation {...props} />);
     });
@@ -34,6 +38,20 @@ describe('<FileInputConfirmation />', () => {
       expect(button.html()).to.contain('Go!');
     });
 
+    it('calls sendTextFileForProcessing when Go button is clicked', () => {
+      const onButtonClick = sinon.spy(FileInputConfirmation.prototype, 'sendTextFileForProcessing');
+      const component = mount(<FileInputConfirmation {...props} />);
+      component.find('button').simulate('click');
+      expect(onButtonClick).to.have.property('callCount', 1);
+    });
+
+    describe('#sendTextFileForProcessing', () => {
+      it('calls props.setCountedWords', () => {
+        wrapper.instance().sendTextFileForProcessing('test');
+        expect(setCountedWordsSpy.called).to.equal(true);
+      });
+    });
+
   });
 
   describe('When props.textFile is empty', () => {
@@ -41,6 +59,7 @@ describe('<FileInputConfirmation />', () => {
     beforeEach(() => {
       props = {
         textFile: [],
+        setCountedWords: () => {},
       };
       wrapper = shallow(<FileInputConfirmation {...props} />);
     });

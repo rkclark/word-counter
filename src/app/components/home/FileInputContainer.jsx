@@ -30,8 +30,15 @@ export default class FileInputContainer extends React.Component {
         >
           <div>Drop a text file here, or click to select one for upload.</div>
         </Dropzone>
-        <FileInputConfirmation textFile={this.state.textFile} />
+        <FileInputConfirmation
+          textFile={this.state.textFile}
+          setCountedWords={this.props.setCountedWords}
+        />
       </div>
     );
   }
 }
+
+FileInputContainer.propTypes = {
+  setCountedWords: React.PropTypes.func.isRequired,
+};

@@ -9,9 +9,13 @@ import Dropzone from 'react-dropzone';
 describe('<FileInputContainer />', () => {
 
   let wrapper;
+  let props;
 
   beforeEach(() => {
-    wrapper = shallow(<FileInputContainer />);
+    props = {
+      setCountedWords: () => {},
+    };
+    wrapper = shallow(<FileInputContainer {...props} />);
   });
 
   it('renders successfully', () => {
@@ -41,6 +45,11 @@ describe('<FileInputContainer />', () => {
   it('passes textFile state to FileInputConfirmation', () => {
     const conf = wrapper.find(FileInputConfirmation);
     expect(conf.prop('textFile')).to.be.a('array');
+  });
+
+  it('passes setCountedWords function to FileInputConfirmation', () => {
+    const conf = wrapper.find(FileInputConfirmation);
+    expect(conf.prop('setCountedWords')).to.be.a('function');
   });
 
   describe('#onDrop', () => {

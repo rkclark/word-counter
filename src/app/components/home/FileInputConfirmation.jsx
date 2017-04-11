@@ -1,6 +1,17 @@
 import React from 'react';
 
 export default class FileInputConfirmation extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.sendTextFileForProcessing = this.sendTextFileForProcessing.bind(this);
+  }
+
+  sendTextFileForProcessing() {
+    const file = this.props.textFile[0];
+    console.log('file for sending is', file);
+    this.props.setCountedWords(file);
+  }
 
   loadContent() {
     if (this.props.textFile.length > 0) {
@@ -8,7 +19,7 @@ export default class FileInputConfirmation extends React.Component {
       return (
         <div>
           <span className="ready-message" >File {file.name} ready for word counting!</span>
-          <button>Go!</button>
+          <button onClick={this.sendTextFileForProcessing} >Go!</button>
         </div>
       );
     }
@@ -27,4 +38,5 @@ export default class FileInputConfirmation extends React.Component {
 
 FileInputConfirmation.propTypes = {
   textFile: React.PropTypes.array.isRequired,
+  setCountedWords: React.PropTypes.func.isRequired,
 };
