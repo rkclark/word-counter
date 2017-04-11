@@ -3,6 +3,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import Home from '../../../src/app/components/home/Home';
+import FileInputContainer from '../../../src/app/components/home/FileInputContainer';
 
 describe('<Home />', () => {
 
@@ -19,6 +20,10 @@ describe('<Home />', () => {
   it('renders a container div', () => {
     const container = wrapper.find('.container');
     expect(container).to.have.length(1);
+  });
+
+  it('renders a FileInputForm', () => {
+    expect(wrapper.contains(<FileInputContainer />)).to.equal(true);
   });
 
 });
