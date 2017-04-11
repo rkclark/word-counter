@@ -9,7 +9,6 @@ export default class FileInputConfirmation extends React.Component {
 
   sendTextFileForProcessing() {
     const file = this.props.textFile[0];
-    console.log('file for sending is', file);
     this.props.setCountedWords(file);
   }
 
