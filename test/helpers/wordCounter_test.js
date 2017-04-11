@@ -5,36 +5,65 @@ import sinon from 'sinon';
 
 describe('WordCounter', () => {
 
-  let instance;
+  let wordCounter;
   const date = new Date();
-  const string = 'Aleksandr Orlov has in the last year become one of the most loved figures in British culture and his catchphrase – Simples! – can be heard from the playground to the office. Written in his inimitable voice (as dictated to his sidekick Sergei), his autobiography will offer the same humour as his TV ads, giving us the full story of his ancestor’s Journey of Courageousness from the Kalahari to Russia, the low-down on his life as entrepreneur and his love of grubs and cravats.‘My name is Aleksandr Orlov. I live and make work in Moscow. I have a success business. I have a mansion decorate with many fine things. I have a naturally majestic posture. But I would have none of these things if it were not for my family. This book is dedicated to them. I also wish to inspire next generation of young businesskats. I am hope that this book will show what can come of courage, hard work and a good fur-care regime. I am also hope that with royalties I will be able to re-marble roof on Orlov family mansion'; //eslint-disable-line
+  const string = 'test Test tesT! This IS a TEST. It /n is not a very fUn string. ////. 2324.'; //eslint-disable-line
   const file = new File([string], 'test.txt', { type: 'text/plain', lastModified: date });
-  const callback = sinon.spy();
+  const testFunc = (arg) => arg;
+  const callbackSpy = sinon.spy(testFunc);
 
   beforeEach(() => {
-    instance = new WordCounter(file, callback);
+    wordCounter = new WordCounter(file, callbackSpy);
+  });
+
+  afterEach(() => {
+    callbackSpy.reset();
   });
 
   it('initializes with file and callback args', () => {
-    expect(instance._file).to.equal(file);
-    expect(instance._callback).to.equal(callback);
+    expect(wordCounter._file).to.equal(file);
+    expect(wordCounter._callback).to.equal(callbackSpy);
   });
 
   it('creates a new FileReader instance on initialization', () => {
-    expect(instance._reader).to.be.instanceOf(window.FileReader);
+    expect(wordCounter._reader).to.be.instanceOf(window.FileReader);
   });
 
   describe('#_parseTextFile', () => {
 
     it('returns a promise', () => {
-      expect(instance._parseTextFile()).to.be.instanceOf(Promise);
+      expect(wordCounter._parseTextFile()).to.be.instanceOf(Promise);
     });
 
     it('returns the content of the file as a string on resolution', (done) => {
-      instance._parseTextFile()
+      wordCounter._parseTextFile()
         .then(
           (result) => {
             expect(result).to.equal(string);
+            done();
+          }
+        )
+        .catch();
+    });
+  });
+
+  describe('#returnWordCountObject', () => {
+
+    it('returns a promise', () => {
+      expect(wordCounter.returnWordCountObject()).to.be.instanceOf(Promise);
+    });
+
+    it('when resolved, returns word count object to callback function', (done) => {
+      wordCounter.returnWordCountObject()
+        .then(
+          () => {
+            const callbackArg = callbackSpy.args[0][0];
+            expect(callbackArg.test).to.equal(4);
+            expect(callbackArg.this).to.equal(1);
+            expect(callbackArg.very).to.equal(1);
+            expect(callbackArg.fun).to.equal(1);
+            expect(callbackArg.is).to.equal(2);
+            expect(callbackArg.a).to.equal(2);
             done();
           }
         )
