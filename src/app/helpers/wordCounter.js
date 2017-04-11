@@ -1,19 +1,29 @@
+/* eslint-disable no-underscore-dangle */
 export default class WordCounter {
   constructor(file, callback) {
-    this.file = file;
-    this.callback = callback;
-    this.reader = new window.FileReader();
+    this._file = file;
+    this._callback = callback;
+    this._reader = new window.FileReader();
+  }
+
+  getFile() {
+    return this._file;
+  }
+
+  getReader() {
+    return this._reader;
   }
 
   _parseTextFile() {
+    const reader = this.getReader();
     return new Promise((resolve, reject) => {
-      this.reader.onload = (e) => {
+      reader.onload = (e) => {
         resolve(e.target.result);
       };
-      this.reader.onerror = () => {
+      reader.onerror = () => {
         reject('Error reading file');
       };
-      this.reader.readAsText(this.file);
+      reader.readAsText(this.getFile());
     });
   }
 }

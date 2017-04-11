@@ -16,12 +16,12 @@ describe('WordCounter', () => {
   });
 
   it('initializes with file and callback args', () => {
-    expect(instance.file).to.equal(file);
-    expect(instance.callback).to.equal(callback);
+    expect(instance._file).to.equal(file);
+    expect(instance._callback).to.equal(callback);
   });
 
   it('creates a new FileReader instance on initialization', () => {
-    expect(instance.reader).to.be.instanceOf(window.FileReader);
+    expect(instance._reader).to.be.instanceOf(window.FileReader);
   });
 
   describe('#_parseTextFile', () => {
