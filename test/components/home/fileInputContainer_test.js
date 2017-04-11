@@ -1,8 +1,9 @@
-/* eslint-disable padded-blocks */
+/* eslint-disable padded-blocks, no-unused-expressions */
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import FileInputContainer from '../../../src/app/components/home/FileInputContainer';
+import FileInputConfirmation from '../../../src/app/components/home/FileInputConfirmation';
 import Dropzone from 'react-dropzone';
 
 describe('<FileInputContainer />', () => {
@@ -22,14 +23,36 @@ describe('<FileInputContainer />', () => {
     expect(dropzone).to.have.length(1);
   });
 
-  it('Sets Dropzone to only accept a single file', () => {
+  it('sets Dropzone to only accept a single file', () => {
     const dropzone = wrapper.find(Dropzone);
     expect(dropzone.prop('multiple')).to.equal(false);
   });
 
-  it('Sets Dropzone to only accept a .txt files', () => {
+  it('sets Dropzone to only accept a .txt files', () => {
     const dropzone = wrapper.find(Dropzone);
     expect(dropzone.prop('accept')).to.equal('text/plain');
+  });
+
+  it('renders a FileInputConfirmation', () => {
+    const conf = wrapper.find(FileInputConfirmation);
+    expect(conf).to.have.length(1);
+  });
+
+  it('passes textFile state to FileInputConfirmation', () => {
+    const conf = wrapper.find(FileInputConfirmation);
+    expect(conf.prop('textFile')).to.be.a('array');
+  });
+
+  describe('#onDrop', () => {
+    it('updates textFile state if file is accepted', () => {
+      wrapper.instance().onDrop(['accepted'], []);
+      expect(wrapper.state('textFile')).to.contain('accepted');
+    });
+
+    it('does not update textFile state if file is rejected', () => {
+      wrapper.instance().onDrop([], ['rejected']);
+      expect(wrapper.state('textFile')).to.be.empty;
+    });
   });
 
 });
