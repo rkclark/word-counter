@@ -10,10 +10,10 @@ describe('PrimeStore', () => {
     primeStore = new PrimeStore();
   });
 
-  it('creates an empty _primes array on initialization', () => {
-    const primes = primeStore._primes;
-    expect(primes).to.be.a('array');
-    expect(primes).to.be.empty;
+  it('creates an empty _calculatedNumbers object on initialization', () => {
+    const obj = primeStore._calculatedNumbers;
+    expect(obj).to.be.a('object');
+    expect(Object.keys(obj)).to.have.length(0);
   });
 
   describe('#isPrime', () => {
@@ -30,14 +30,14 @@ describe('PrimeStore', () => {
       expect(primeStore.isPrime(500)).to.be.false;
     });
 
-    it('adds prime to primes array', () => {
+    it('adds prime to _calculatedNumbers object with value true', () => {
       primeStore.isPrime(37);
-      expect(primeStore._primes).to.contain(37);
+      expect(primeStore._calculatedNumbers[37]).to.be.true;
     });
 
-    it('does not add non-prime to primes array', () => {
+    it('adds non-prime to _calculatedNumbers object with value false', () => {
       primeStore.isPrime(36);
-      expect(primeStore._primes).not.to.contain(36);
+      expect(primeStore._calculatedNumbers[36]).to.be.false;
     });
 
   });
