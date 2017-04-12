@@ -13,7 +13,7 @@ describe('<ResultsContainer />', () => {
   describe('With empty countedWords object', () => {
     beforeEach(() => {
       props = {
-        countedWords: {},
+        countedWords: [],
       };
       wrapper = shallow(<ResultsContainer {...props} />);
     });
@@ -33,11 +33,11 @@ describe('<ResultsContainer />', () => {
 
     beforeEach(() => {
       props = {
-        countedWords: {
-          test: 4,
-          meerkat: 5,
-          simples: 1,
-        },
+        countedWords: [
+          { word: 'test', count: 4, prime: false },
+          { word: 'meerkat', count: 5, prime: true },
+          { word: 'simples', count: 1, prime: true },
+        ],
       };
       wrapper = shallow(<ResultsContainer {...props} />);
     });
@@ -57,10 +57,12 @@ describe('<ResultsContainer />', () => {
       expect(rows).to.have.length(3);
     });
 
-    it('passes wordObject prop to WordTableRow', () => {
+    it('passes word, count and prime props to WordTableRow', () => {
       const table = wrapper.find('table');
       const rows = table.find(WordTableRow);
-      expect(rows.at(0).prop('wordObject')).to.be.a('object');
+      expect(rows.at(0).prop('word')).to.be.a('string');
+      expect(rows.at(0).prop('count')).to.be.a('number');
+      expect(rows.at(0).prop('prime')).to.be.a('boolean');
     });
 
   });

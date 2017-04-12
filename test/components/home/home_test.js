@@ -40,24 +40,25 @@ describe('<Home />', () => {
     expect(container).to.have.length(1);
   });
 
-  it('passes countedWords object to FileInputContainer', () => {
+  it('passes countedWords array to FileInputContainer', () => {
     const container = wrapper.find(ResultsContainer);
-    expect(container.prop('countedWords')).to.be.a('object');
+    expect(container.prop('countedWords')).to.be.a('array');
   });
 
   describe('#setCountedWords', () => {
     it('updates countedWords state', () => {
-      wrapper.instance().setCountedWords({ simples: 4 });
-      expect(wrapper.state('countedWords')).to.contain({ simples: 4 });
+      const testData = { word: 'simples', count: 4, prime: false };
+      wrapper.instance().setCountedWords([testData]);
+      expect(wrapper.state('countedWords')).to.contain(testData);
     });
   });
 
   describe('#processTextFile', () => {
-    it('calls returnWordCountObject on instance of WordCounter', () => {
+    it('calls returnWordCountArray on instance of WordCounter', () => {
       const date = new Date();
       const string = 'test Test tesT! This IS a TEST. It /n is not a very fUn string. ////. 2324.'; //eslint-disable-line
       const file = new File([string], 'test.txt', { type: 'text/plain', lastModified: date });
-      const stub = sinon.stub(WordCounter.prototype, 'returnWordCountObject');
+      const stub = sinon.stub(WordCounter.prototype, 'returnWordCountArray');
       wrapper.instance().processTextFile(file);
       expect(stub.called).to.equal(true);
       stub.restore();

@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle, no-param-reassign */
+/* eslint-disable no-underscore-dangle, no-param-reassign, arrow-body-style, object-shorthand */
 import PrimeStore from './primeStore';
 
 export default class WordCounter {
@@ -9,15 +9,13 @@ export default class WordCounter {
     this._primeStore = new PrimeStore;
   }
 
-  returnWordCountObject() {
+  returnWordCountArray() {
     return new Promise((resolve, reject) => {
       this._parseTextFile()
         .then(
           (string) => {
-            const wordsArray = this._createWordsArray(string);
-            const countsObject = this._createWordCountObject(wordsArray);
-            const resultsObject = this._addPrimeIndicators(countsObject);
-            this._sendToCallback(resultsObject);
+            const resultsArray = this._createResultsArray(string);
+            this._sendToCallback(resultsArray);
             resolve();
           }
         )
@@ -50,6 +48,29 @@ export default class WordCounter {
     });
   }
 
+  _createResultsArray(string) {
+    const unCountedWordsArray = this._createWordsArray(string);
+    const wordCountObject = this._createWordCountObject(unCountedWordsArray);
+    let resultsArray = this._covertCountsToArray(wordCountObject);
+    resultsArray = resultsArray.sort(this._compareWordsByCount);
+    return resultsArray;
+  }
+
+  _covertCountsToArray(wordCountObject) {
+    const resultsArray = [];
+    Object.keys(wordCountObject).forEach((word) => {
+      const wordCount = wordCountObject[word];
+      const isPrime = this._checkIfPrime(wordCount);
+      const wordObject = {
+        word: word,
+        count: wordCount,
+        prime: isPrime,
+      };
+      resultsArray.push(wordObject);
+    });
+    return resultsArray;
+  }
+
   _createWordsArray(string) {
     const cleanedString = this._cleanString(string);
     return cleanedString.split(' ');
@@ -66,16 +87,14 @@ export default class WordCounter {
     }, {});
   }
 
-  _addPrimeIndicators(countsObject) {
-    Object.keys(countsObject).forEach((word) => {
-      const wordCount = countsObject[word];
-      const isPrime = this._checkIfPrime(wordCount);
-      countsObject[word] = {
-        count: wordCount,
-        prime: isPrime,
-      };
-    });
-    return countsObject;
+  _compareWordsByCount(a, b) {
+    if (a.count < b.count) {
+      return 1;
+    }
+    if (a.count > b.count) {
+      return -1;
+    }
+    return 0;
   }
 
   _checkIfPrime(int) {

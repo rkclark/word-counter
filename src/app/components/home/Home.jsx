@@ -7,7 +7,7 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      countedWords: {},
+      countedWords: [],
     };
 
     this.processTextFile = this.processTextFile.bind(this);
@@ -18,16 +18,16 @@ export default class Home extends React.Component {
     console.log('Home updated, state is ', this.state);
   }
 
-  setCountedWords(wordsObject) {
+  setCountedWords(data) {
     this.setState({
-      countedWords: wordsObject,
+      countedWords: data,
     });
   }
 
   processTextFile(file) {
     console.log('about to processs: ', file);
     const wordCounter = new WordCounter(file, this.setCountedWords);
-    wordCounter.returnWordCountObject();
+    wordCounter.returnWordCountArray();
   }
 
 

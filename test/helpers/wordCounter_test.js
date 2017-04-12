@@ -52,27 +52,42 @@ describe('WordCounter', () => {
     });
   });
 
-  describe('#returnWordCountObject', () => {
+  describe('#returnWordCountArray', () => {
 
     it('returns a promise', () => {
-      expect(wordCounter.returnWordCountObject()).to.be.instanceOf(Promise);
+      expect(wordCounter.returnWordCountArray()).to.be.instanceOf(Promise);
     });
 
-    it('when resolved, returns word count object to callback function', (done) => {
-      wordCounter.returnWordCountObject()
+    it('when resolved, returns word count array to callback function', (done) => {
+      wordCounter.returnWordCountArray()
         .then(
           () => {
             const callbackArg = callbackSpy.args[0][0];
-            expect(callbackArg.test.count).to.equal(4);
-            expect(callbackArg.test.prime).to.be.false;
-            expect(callbackArg.this.count).to.equal(1);
-            expect(callbackArg.this.prime).to.be.false;
-            expect(callbackArg.very.count).to.equal(1);
-            expect(callbackArg.fun.count).to.equal(1);
-            expect(callbackArg.is.count).to.equal(3);
-            expect(callbackArg.is.prime).to.be.true;
-            expect(callbackArg.a.count).to.equal(2);
-            expect(callbackArg.a.prime).to.be.true;
+
+            expect(callbackArg).to.contain(
+              { word: 'test', count: 4, prime: false }
+            );
+
+            expect(callbackArg).to.contain(
+              { word: 'this', count: 1, prime: false }
+            );
+
+            expect(callbackArg).to.contain(
+              { word: 'very', count: 1, prime: false }
+            );
+
+            expect(callbackArg).to.contain(
+              { word: 'fun', count: 1, prime: false }
+            );
+
+            expect(callbackArg).to.contain(
+              { word: 'is', count: 3, prime: true }
+            );
+
+            expect(callbackArg).to.contain(
+              { word: 'a', count: 2, prime: true }
+            );
+
             done();
           }
         )

@@ -11,11 +11,9 @@ describe('<WordTableRow />', () => {
 
   beforeEach(() => {
     props = {
-      wordObject: {
-        word: 'simples',
-        count: 4,
-        prime: false,
-      },
+      word: 'simples',
+      count: 4,
+      prime: false,
     };
     wrapper = shallow(<WordTableRow {...props} />);
   });

@@ -1,18 +1,20 @@
 /* eslint-disable arrow-body-style */
 import React from 'react';
 
-const WordTableRow = ({ wordObject }) => {
+const WordTableRow = ({ word, count, prime }) => {
   return (
     <tr>
-      <td>{wordObject.word}</td>
-      <td>{wordObject.count}</td>
-      <td>{`${wordObject.prime}`}</td>
+      <td>{word}</td>
+      <td>{count}</td>
+      <td>{`${prime}`}</td>
     </tr>
   );
 };
 
 WordTableRow.propTypes = {
-  wordObject: React.PropTypes.object.isRequired,
+  word: React.PropTypes.string.isRequired,
+  count: React.PropTypes.number.isRequired,
+  prime: React.PropTypes.bool.isRequired,
 };
 
 export default WordTableRow;

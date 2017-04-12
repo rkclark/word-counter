@@ -1,24 +1,19 @@
+/* eslint-disable arrow-body-style */
+
 import React from 'react';
 import WordTableRow from './WordTableRow';
 
 const ResultsContainer = ({ countedWords }) => {
-  const buildTableRowsArray = (keys) => {
-    const tableRowsArray = [];
-    keys.forEach((key) => {
-      const countValue = countedWords[key].count;
-      const primeValue = countedWords[key].prime;
-      const wordObject = { word: key, count: countValue, prime: primeValue };
-      tableRowsArray.push(
-        <WordTableRow wordObject={wordObject} key={`${key}_${countValue}`} />
-      );
-    });
-    return tableRowsArray;
+  const renderTableRows = () => {
+    return countedWords.map(
+      (wordObject, i) =>
+        <WordTableRow {...wordObject} key={i} />
+    );
   };
 
   const loadContent = () => {
-    const keys = Object.keys(countedWords);
-    if (keys.length > 0) {
-      const rows = buildTableRowsArray(keys);
+    if (countedWords.length > 0) {
+      const rows = renderTableRows();
       return (
         <table>
           <thead>
@@ -48,7 +43,7 @@ const ResultsContainer = ({ countedWords }) => {
 
 
 ResultsContainer.propTypes = {
-  countedWords: React.PropTypes.object.isRequired,
+  countedWords: React.PropTypes.array.isRequired,
 };
 
 export default ResultsContainer;
