@@ -56,7 +56,7 @@ export default class WordCounter {
   }
 
   _cleanString(string) {
-    return string.replace(/\W+/g, ' ').toLowerCase();
+    return string.replace(/\W+/g, ' ').toLowerCase().trim();
   }
 
   _createWordCountObject(wordsArray) {
