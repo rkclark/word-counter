@@ -1,10 +1,35 @@
 import React from 'react';
+import WordTableRow from './WordTableRow';
 
 const ResultsContainer = ({ countedWords }) => {
+  const buildTableRowsArray = (keys) => {
+    const tableRowsArray = [];
+    keys.forEach((key) => {
+      const value = countedWords[key];
+      const wordObject = { word: key, count: value };
+      tableRowsArray.push(
+        <WordTableRow wordObject={wordObject} key={`${key}_${value}`} />
+      );
+    });
+    return tableRowsArray;
+  };
+
   const loadContent = () => {
-    if (Object.keys(countedWords).length > 0) {
+    const keys = Object.keys(countedWords);
+    if (keys.length > 0) {
+      const rows = buildTableRowsArray(keys);
       return (
-        <table></table>
+        <table>
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows}
+          </tbody>
+        </table>
       );
     }
     return '';

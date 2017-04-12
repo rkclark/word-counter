@@ -3,6 +3,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import ResultsContainer from '../../../src/app/components/home/ResultsContainer';
+import WordTableRow from '../../../src/app/components/home/WordTableRow';
 
 describe('<ResultsContainer />', () => {
 
@@ -50,8 +51,18 @@ describe('<ResultsContainer />', () => {
       expect(table).to.have.length(1);
     });
 
+    it('renders WordTableRows inside table', () => {
+      const table = wrapper.find('table');
+      const rows = table.find(WordTableRow);
+      expect(rows).to.have.length(3);
+    });
+
+    it('passes wordObject prop to WordTableRow', () => {
+      const table = wrapper.find('table');
+      const rows = table.find(WordTableRow);
+      expect(rows.at(0).prop('wordObject')).to.be.a('object');
+    });
+
   });
-
-
 
 });
