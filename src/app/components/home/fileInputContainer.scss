@@ -25,7 +25,8 @@
     font-size: 20px;
 }
 
-.filename {
+.green-underline {
   text-decoration: underline;
   text-decoration-color: $active;
+  text-decoration-style: double;
 }

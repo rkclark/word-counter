@@ -19,7 +19,7 @@ export default class FileInputConfirmation extends React.Component {
         <div className="row mt-3">
           <div className="col-12">
             <span className="ready-message" >
-              File <span className="filename">{file.name}</span> ready for word counting!
+              File <span className="green-underline">{file.name}</span> ready for word counting!
             </span>
           </div>
           <div className="col-12">
