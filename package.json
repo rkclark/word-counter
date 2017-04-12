@@ -61,6 +61,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
     "express": "^4.13.4",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
