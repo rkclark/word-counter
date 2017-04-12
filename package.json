@@ -1,6 +1,6 @@
 {
   "name": "word-counter",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Counts words in a text file",
   "scripts": {
     "dev": "webpack-dev-server --watch --colors",
@@ -8,7 +8,8 @@
     "start": "NODE_ENV=production PORT=8080 node ./server.js",
     "test": "mocha --compilers js:babel-core/register --require jsdom-global/register --recursive ./test",
     "test:watch": "npm run test -- --watch",
-    "lint": "eslint src test webpack"
+    "lint": "eslint src test webpack",
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "repository": {
