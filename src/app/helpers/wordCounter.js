@@ -80,7 +80,10 @@ export default class WordCounter {
   }
 
   _cleanString(string) {
-    return string.replace(/[^A-Za-z']/g, ' ').replace(/\s+/g, '|').toLowerCase().trim();
+    return string.replace(/[^A-Za-z']/g, ' ')
+                 .replace(/\s+/g, '|')
+                 .toLowerCase()
+                 .trim();
   }
 
   _createWordCountObject(wordsArray) {
