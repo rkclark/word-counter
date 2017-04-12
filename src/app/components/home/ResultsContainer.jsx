@@ -15,18 +15,20 @@ const ResultsContainer = ({ countedWords }) => {
     if (countedWords.length > 0) {
       const rows = renderTableRows();
       return (
-        <table>
-          <thead>
-            <tr>
-              <th>Word</th>
-              <th>Count</th>
-              <th>Count Is Prime?</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows}
-          </tbody>
-        </table>
+        <div className="col-12 col-md-6 offset-md-3 pt-4">
+          <table className="table table-sm table-striped table-hover m-auto">
+            <thead>
+              <tr>
+                <th>Word</th>
+                <th>Count</th>
+                <th>Count Is Prime?</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows}
+            </tbody>
+          </table>
+        </div>
       );
     }
     return '';
@@ -35,7 +37,7 @@ const ResultsContainer = ({ countedWords }) => {
   const content = loadContent();
 
   return (
-    <div>
+    <div className="row">
       {content}
     </div>
   );

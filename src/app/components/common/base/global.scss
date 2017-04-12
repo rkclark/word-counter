@@ -23,3 +23,21 @@ body {
 .shadow-text {
   text-shadow: 0px 0px 3px black;
 }
+
+.table {
+  max-width: 100%;
+  width: auto;
+}
+
+.table thead th {
+  text-align: center;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: darken($background, 5%);
+}
+
+.table-hover tbody tr:hover {
+  background-color: darken($background, 10%);
+  transition: 0.5s ease;
+}
