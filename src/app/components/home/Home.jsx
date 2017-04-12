@@ -34,7 +34,6 @@ export default class Home extends React.Component {
   render() {
     return (
       <div className="container home">
-        <h1>Home</h1>
         <FileInputContainer processTextFile={this.processTextFile} />
         <ResultsContainer countedWords={this.state.countedWords} />
       </div>

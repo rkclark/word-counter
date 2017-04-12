@@ -16,8 +16,8 @@ describe('<Header />', () => {
     expect(wrapper).to.have.length(1);
   });
 
-  it('renders a nav', () => {
-    const nav = wrapper.find('nav');
+  it('renders a h1', () => {
+    const nav = wrapper.find('h1');
     expect(nav).to.have.length(1);
   });
 
