@@ -22,11 +22,14 @@ export default class FileInputContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="row">
         <Dropzone
           onDrop={this.onDrop}
           multiple={false}
           accept="text/plain"
+          className="dropzone col-6 offset-3 pt-5"
+          activeClassName="active-dropzone"
+          rejectClassName="reject-dropzone"
         >
           <div>Drop a text file here, or click to select one for upload.</div>
         </Dropzone>

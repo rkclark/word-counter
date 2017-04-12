@@ -33,7 +33,7 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <div className="container home">
+      <div className="home">
         <FileInputContainer processTextFile={this.processTextFile} />
         <ResultsContainer countedWords={this.state.countedWords} />
       </div>

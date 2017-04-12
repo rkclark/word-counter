@@ -1,0 +1,31 @@
+$dropzone-border: #cfcfcf;
+$dropzone-active: #38B132;
+$dropzone-reject: #cc4545;
+
+.dropzone {
+  border: 2px dashed $dropzone-border;
+  height: 200px;
+  border-radius: 8px;
+  transition: 1s ease;
+  text-shadow: 0px 0px 3px black;
+}
+
+.active-dropzone {
+  background-color: $dropzone-active;
+  transition: 1s ease;
+}
+
+.active-dropzone::after {
+    content: "That file looks good!";
+    font-size: 20px;
+}
+
+.reject-dropzone {
+  background-color: $dropzone-reject;
+  transition: 1s ease;
+}
+
+.reject-dropzone::after {
+    content: "Sorry, I can't accept that type of file!";
+    font-size: 20px;
+}
