@@ -1,6 +1,6 @@
 import React from 'react';
 import FileInputContainer from './FileInputContainer';
-import WordCounter from '../../helpers/wordCounter.js'
+import WordCounter from '../../helpers/wordCounter.js';
 
 export default class Home extends React.Component {
   constructor(props) {
