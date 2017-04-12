@@ -73,11 +73,14 @@ export default class WordCounter {
 
   _createWordsArray(string) {
     const cleanedString = this._cleanString(string);
-    return cleanedString.split(' ');
+    const array = cleanedString.split('|');
+    // Remove empty value from end of array
+    array.pop();
+    return array;
   }
 
   _cleanString(string) {
-    return string.replace(/\W+/g, ' ').toLowerCase().trim();
+    return string.replace(/[^A-Za-z']/g, ' ').replace(/\s+/g, '|').toLowerCase().trim();
   }
 
   _createWordCountObject(wordsArray) {
