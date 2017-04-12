@@ -5,10 +5,17 @@ export default class PrimeStore {
   }
 
   isPrime(int) {
+    // Return existing calculated value if it exists
+    if (this._inCalculatedNumbers(int)) {
+      return this._getValueFromCalculatedNumbers(int);
+    }
+    // Perform new prime calculation
     if (this._calculateIfPrime(int)) {
+      // Add new prime to calculatedNumbers
       this._addToCalculatedNumbers(int, true);
       return true;
     }
+    // Add new non-prime to calculatedNumbers
     this._addToCalculatedNumbers(int, false);
     return false;
   }
@@ -26,4 +33,11 @@ export default class PrimeStore {
     return int > 1;
   }
 
+  _inCalculatedNumbers(int) {
+    return this._calculatedNumbers.hasOwnProperty(int);
+  }
+
+  _getValueFromCalculatedNumbers(key) {
+    return this._calculatedNumbers[key];
+  }
 }
