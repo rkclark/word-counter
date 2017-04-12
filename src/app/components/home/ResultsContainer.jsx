@@ -5,10 +5,11 @@ const ResultsContainer = ({ countedWords }) => {
   const buildTableRowsArray = (keys) => {
     const tableRowsArray = [];
     keys.forEach((key) => {
-      const value = countedWords[key];
-      const wordObject = { word: key, count: value };
+      const countValue = countedWords[key].count;
+      const primeValue = countedWords[key].prime;
+      const wordObject = { word: key, count: countValue, prime: primeValue };
       tableRowsArray.push(
-        <WordTableRow wordObject={wordObject} key={`${key}_${value}`} />
+        <WordTableRow wordObject={wordObject} key={`${key}_${countValue}`} />
       );
     });
     return tableRowsArray;
@@ -24,6 +25,7 @@ const ResultsContainer = ({ countedWords }) => {
             <tr>
               <th>Word</th>
               <th>Count</th>
+              <th>Count Is Prime?</th>
             </tr>
           </thead>
           <tbody>

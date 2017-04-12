@@ -14,6 +14,7 @@ describe('<WordTableRow />', () => {
       wordObject: {
         word: 'simples',
         count: 4,
+        prime: false,
       },
     };
     wrapper = shallow(<WordTableRow {...props} />);
@@ -28,10 +29,11 @@ describe('<WordTableRow />', () => {
     expect(table).to.have.length(1);
   });
 
-  it('renders table cells for word and count', () => {
+  it('renders table cells for word, count and prime', () => {
     const cells = wrapper.find('td');
     expect(cells.at(0).text()).to.equal('simples');
     expect(cells.at(1).text()).to.equal('4');
+    expect(cells.at(2).text()).to.equal('false');
   });
 
 });

@@ -6,7 +6,7 @@ export default class WordCounter {
     this._file = file;
     this._callback = callback;
     this._reader = new window.FileReader();
-    this._primeStore = new PrimeStore();
+    this._primeStore = new PrimeStore;
   }
 
   returnWordCountObject() {
@@ -15,7 +15,8 @@ export default class WordCounter {
         .then(
           (string) => {
             const wordsArray = this._createWordsArray(string);
-            const resultsObject = this._createWordCountObject(wordsArray);
+            const countsObject = this._createWordCountObject(wordsArray);
+            const resultsObject = this._addPrimeIndicators(countsObject);
             this._sendToCallback(resultsObject);
             resolve();
           }
@@ -28,12 +29,12 @@ export default class WordCounter {
     });
   }
 
-  _getFile() {
-    return this._file;
-  }
-
   _getReader() {
     return this._reader;
+  }
+
+  _getFile() {
+    return this._file;
   }
 
   _parseTextFile() {
@@ -49,13 +50,13 @@ export default class WordCounter {
     });
   }
 
-  _cleanString(string) {
-    return string.replace(/\W+/g, ' ').toLowerCase();
-  }
-
   _createWordsArray(string) {
     const cleanedString = this._cleanString(string);
     return cleanedString.split(' ');
+  }
+
+  _cleanString(string) {
+    return string.replace(/\W+/g, ' ').toLowerCase();
   }
 
   _createWordCountObject(wordsArray) {
@@ -63,6 +64,22 @@ export default class WordCounter {
       results[word] = (results[word] || 0) + 1;
       return results;
     }, {});
+  }
+
+  _addPrimeIndicators(countsObject) {
+    Object.keys(countsObject).forEach((word) => {
+      const wordCount = countsObject[word];
+      const isPrime = this._checkIfPrime(wordCount);
+      countsObject[word] = {
+        count: wordCount,
+        prime: isPrime,
+      };
+    });
+    return countsObject;
+  }
+
+  _checkIfPrime(int) {
+    return this._primeStore.isPrime(int);
   }
 
   _sendToCallback(arg) {

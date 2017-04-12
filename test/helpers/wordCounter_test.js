@@ -8,7 +8,7 @@ describe('WordCounter', () => {
 
   let wordCounter;
   const date = new Date();
-  const string = 'test Test tesT! This IS a TEST. It /n is not a very fUn string. ////. 2324.'; //eslint-disable-line
+  const string = 'test Test tesT! is This IS a TEST. It /n is not a very fUn string. ////. 2324.'; //eslint-disable-line
   const file = new File([string], 'test.txt', { type: 'text/plain', lastModified: date });
   const testFunc = (arg) => arg;
   const callbackSpy = sinon.spy(testFunc);
@@ -63,12 +63,16 @@ describe('WordCounter', () => {
         .then(
           () => {
             const callbackArg = callbackSpy.args[0][0];
-            expect(callbackArg.test).to.equal(4);
-            expect(callbackArg.this).to.equal(1);
-            expect(callbackArg.very).to.equal(1);
-            expect(callbackArg.fun).to.equal(1);
-            expect(callbackArg.is).to.equal(2);
-            expect(callbackArg.a).to.equal(2);
+            expect(callbackArg.test.count).to.equal(4);
+            expect(callbackArg.test.prime).to.be.false;
+            expect(callbackArg.this.count).to.equal(1);
+            expect(callbackArg.this.prime).to.be.false;
+            expect(callbackArg.very.count).to.equal(1);
+            expect(callbackArg.fun.count).to.equal(1);
+            expect(callbackArg.is.count).to.equal(3);
+            expect(callbackArg.is.prime).to.be.true;
+            expect(callbackArg.a.count).to.equal(2);
+            expect(callbackArg.a.prime).to.be.true;
             done();
           }
         )

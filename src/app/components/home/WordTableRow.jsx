@@ -6,6 +6,7 @@ const WordTableRow = ({ wordObject }) => {
     <tr>
       <td>{wordObject.word}</td>
       <td>{wordObject.count}</td>
+      <td>{`${wordObject.prime}`}</td>
     </tr>
   );
 };
