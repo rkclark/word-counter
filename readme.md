@@ -1,1 +1,1 @@
-# Simples Word Counter
+# Word Counter
