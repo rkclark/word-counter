@@ -21,7 +21,7 @@ To build the `./dist` folder, run `npm run build`.
 
 This is run automatically when deploying to Heroku.
 
-### Technologies and Approach
+### Technologies
 
 The app is built with:
 
