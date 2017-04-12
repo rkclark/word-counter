@@ -3,7 +3,7 @@ import Header from './common/Header';
 
 function App({ children }) {
   return (
-    <div className="container">
+    <div className="container text-center py-5">
       <Header />
       {children}
     </div>
