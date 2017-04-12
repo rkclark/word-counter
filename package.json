@@ -1,7 +1,7 @@
 {
-  "name": "express-react-redux-starter",
-  "version": "1.1.0",
-  "description": "Starter for Express, React, Redux, SCSS applications",
+  "name": "word-counter",
+  "version": "1.0",
+  "description": "Counts words in a text file",
   "scripts": {
     "dev": "webpack-dev-server --watch --colors",
     "build": "rimraf dist && NODE_ENV=production webpack --colors",
@@ -10,24 +10,12 @@
     "test:watch": "npm run test -- --watch",
     "lint": "eslint src test webpack"
   },
-  "keywords": [
-    "ExpressJS",
-    "ReactJS",
-    "React hot loader",
-    "React Router",
-    "SCSS",
-    "Webpack Devevelopment configuration",
-    "Webpack Production configuration",
-    "Airbnb Eslint",
-    "pm2",
-    "mocha",
-    "chai"
-  ],
+  "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DimitriMikadze/express-react-redux-starter"
+    "url": "git+https://github.com/rkclark/word-counter"
   },
-  "author": "Dimitri Mikadze",
+  "author": "Rick Clark",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.8.0",
@@ -36,7 +24,6 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-1": "^6.5.0",
     "chai": "^3.5.0",
-    "chai-jquery": "^2.0.0",
     "css-loader": "^0.23.1",
     "enzyme": "^2.8.0",
     "eslint": "^2.10.2",
@@ -46,7 +33,6 @@
     "eslint-plugin-react": "^5.1.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.16.1",
-    "jquery": "^2.2.3",
     "jsdom": "^9.0.0",
     "jsdom-global": "^2.1.1",
     "mocha": "^2.4.5",
@@ -66,7 +52,6 @@
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-dropzone": "^3.12.3",
-    "react-redux": "^5.0.2",
     "react-router": "^3.0.2"
   }
 }
