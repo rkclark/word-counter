@@ -12,9 +12,7 @@ export default class FileInputContainer extends React.Component {
     this.onDrop = this.onDrop.bind(this);
   }
 
-  onDrop(acceptedFiles, rejectedFiles) {
-    console.log('Accepted files: ', acceptedFiles);
-    console.log('Rejected files: ', rejectedFiles);
+  onDrop(acceptedFiles) {
     this.setState({
       textFile: acceptedFiles,
     });

@@ -16,10 +16,6 @@ export default class Home extends React.Component {
     this.setLoading = this.setLoading.bind(this);
   }
 
-  componentDidUpdate() {
-    console.log('Home updated, state is ', this.state);
-  }
-
   setCountedWords(data) {
     this.setState({
       countedWords: data,
@@ -34,7 +30,6 @@ export default class Home extends React.Component {
   }
 
   processTextFile(file) {
-    console.log('about to processs: ', file);
     this.setLoading(true);
     const wordCounter = new WordCounter(file, this.setCountedWords);
     wordCounter.returnWordCountArray();
