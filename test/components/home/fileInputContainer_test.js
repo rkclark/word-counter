@@ -13,7 +13,7 @@ describe('<FileInputContainer />', () => {
 
   beforeEach(() => {
     props = {
-      setCountedWords: () => {},
+      processTextFile: () => {},
     };
     wrapper = shallow(<FileInputContainer {...props} />);
   });
@@ -47,9 +47,9 @@ describe('<FileInputContainer />', () => {
     expect(conf.prop('textFile')).to.be.a('array');
   });
 
-  it('passes setCountedWords function to FileInputConfirmation', () => {
+  it('passes processTextFile function to FileInputConfirmation', () => {
     const conf = wrapper.find(FileInputConfirmation);
-    expect(conf.prop('setCountedWords')).to.be.a('function');
+    expect(conf.prop('processTextFile')).to.be.a('function');
   });
 
   describe('#onDrop', () => {

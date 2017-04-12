@@ -9,17 +9,17 @@ describe('<FileInputConfirmation />', () => {
 
   let wrapper;
   let props;
-  let setCountedWordsSpy;
+  let processTextFileSpy;
 
   describe('When props.textFile contains text file data', () => {
 
     beforeEach(() => {
-      setCountedWordsSpy = sinon.spy();
+      processTextFileSpy = sinon.spy();
       props = {
         textFile: [
           { name: 'test.txt' },
         ],
-        setCountedWords: setCountedWordsSpy,
+        processTextFile: processTextFileSpy,
       };
       wrapper = shallow(<FileInputConfirmation {...props} />);
     });
@@ -46,9 +46,9 @@ describe('<FileInputConfirmation />', () => {
     });
 
     describe('#sendTextFileForProcessing', () => {
-      it('calls props.setCountedWords', () => {
+      it('calls props.processTextFile', () => {
         wrapper.instance().sendTextFileForProcessing('test');
-        expect(setCountedWordsSpy.called).to.equal(true);
+        expect(processTextFileSpy.called).to.equal(true);
       });
     });
 
@@ -59,7 +59,7 @@ describe('<FileInputConfirmation />', () => {
     beforeEach(() => {
       props = {
         textFile: [],
-        setCountedWords: () => {},
+        processTextFile: () => {},
       };
       wrapper = shallow(<FileInputConfirmation {...props} />);
     });

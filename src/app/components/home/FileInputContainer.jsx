@@ -32,7 +32,7 @@ export default class FileInputContainer extends React.Component {
         </Dropzone>
         <FileInputConfirmation
           textFile={this.state.textFile}
-          setCountedWords={this.props.setCountedWords}
+          processTextFile={this.props.processTextFile}
         />
       </div>
     );
@@ -40,5 +40,5 @@ export default class FileInputContainer extends React.Component {
 }
 
 FileInputContainer.propTypes = {
-  setCountedWords: React.PropTypes.func.isRequired,
+  processTextFile: React.PropTypes.func.isRequired,
 };

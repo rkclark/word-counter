@@ -1,13 +1,15 @@
 import React from 'react';
 import FileInputContainer from './FileInputContainer';
+import WordCounter from '../../helpers/wordCounter.js'
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      countedWords: [],
+      countedWords: {},
     };
 
+    this.processTextFile = this.processTextFile.bind(this);
     this.setCountedWords = this.setCountedWords.bind(this);
   }
 
@@ -15,18 +17,24 @@ export default class Home extends React.Component {
     console.log('Home updated, state is ', this.state);
   }
 
-  setCountedWords(data) {
-    console.log('data for counted words is', data);
+  setCountedWords(wordsObject) {
     this.setState({
-      countedWords: [data],
+      countedWords: wordsObject,
     });
   }
+
+  processTextFile(file) {
+    console.log('about to processs: ', file);
+    const wordCounter = new WordCounter(file, this.setCountedWords);
+    wordCounter.returnWordCountObject();
+  }
+
 
   render() {
     return (
       <div className="container home">
         <h1>Home</h1>
-        <FileInputContainer setCountedWords={this.setCountedWords} />
+        <FileInputContainer processTextFile={this.processTextFile} />
       </div>
     );
   }

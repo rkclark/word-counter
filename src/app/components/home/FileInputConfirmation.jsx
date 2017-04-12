@@ -9,7 +9,7 @@ export default class FileInputConfirmation extends React.Component {
 
   sendTextFileForProcessing() {
     const file = this.props.textFile[0];
-    this.props.setCountedWords(file);
+    this.props.processTextFile(file);
   }
 
   loadContent() {
@@ -37,5 +37,5 @@ export default class FileInputConfirmation extends React.Component {
 
 FileInputConfirmation.propTypes = {
   textFile: React.PropTypes.array.isRequired,
-  setCountedWords: React.PropTypes.func.isRequired,
+  processTextFile: React.PropTypes.func.isRequired,
 };
