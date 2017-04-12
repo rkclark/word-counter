@@ -1,6 +1,7 @@
 /* eslint-disable padded-blocks, no-unused-expressions, no-underscore-dangle */
 import { expect } from 'chai';
 import WordCounter from '../../src/app/helpers/wordCounter';
+import PrimeStore from '../../src/app/helpers/primeStore';
 import sinon from 'sinon';
 
 describe('WordCounter', () => {
@@ -27,6 +28,10 @@ describe('WordCounter', () => {
 
   it('creates a new FileReader instance on initialization', () => {
     expect(wordCounter._reader).to.be.instanceOf(window.FileReader);
+  });
+
+  it('creates a new PrimeStore instance on initialization', () => {
+    expect(wordCounter._primeStore).to.be.instanceOf(PrimeStore);
   });
 
   describe('#_parseTextFile', () => {

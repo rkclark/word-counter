@@ -1,9 +1,12 @@
 /* eslint-disable no-underscore-dangle, no-param-reassign */
+import PrimeStore from './primeStore';
+
 export default class WordCounter {
   constructor(file, callback) {
     this._file = file;
     this._callback = callback;
     this._reader = new window.FileReader();
+    this._primeStore = new PrimeStore();
   }
 
   returnWordCountObject() {
