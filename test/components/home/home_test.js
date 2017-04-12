@@ -5,6 +5,7 @@ import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import Home from '../../../src/app/components/home/Home';
 import FileInputContainer from '../../../src/app/components/home/FileInputContainer';
+import ResultsContainer from '../../../src/app/components/home/ResultsContainer';
 import WordCounter from '../../../src/app/helpers/wordCounter';
 
 describe('<Home />', () => {
@@ -34,10 +35,20 @@ describe('<Home />', () => {
     expect(container.prop('processTextFile')).to.be.a('function');
   });
 
+  it('renders a ResultsContainer', () => {
+    const container = wrapper.find(ResultsContainer);
+    expect(container).to.have.length(1);
+  });
+
+  it('passes countedWords object to FileInputContainer', () => {
+    const container = wrapper.find(ResultsContainer);
+    expect(container.prop('countedWords')).to.be.a('object');
+  });
+
   describe('#setCountedWords', () => {
     it('updates countedWords state', () => {
-      wrapper.instance().setCountedWords('test');
-      expect(wrapper.state('countedWords')).to.contain('test');
+      wrapper.instance().setCountedWords({ simples: 4 });
+      expect(wrapper.state('countedWords')).to.contain({ simples: 4 });
     });
   });
 

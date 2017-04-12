@@ -1,5 +1,6 @@
 import React from 'react';
 import FileInputContainer from './FileInputContainer';
+import ResultsContainer from './ResultsContainer';
 import WordCounter from '../../helpers/wordCounter.js';
 
 export default class Home extends React.Component {
@@ -35,6 +36,7 @@ export default class Home extends React.Component {
       <div className="container home">
         <h1>Home</h1>
         <FileInputContainer processTextFile={this.processTextFile} />
+        <ResultsContainer countedWords={this.state.countedWords} />
       </div>
     );
   }
