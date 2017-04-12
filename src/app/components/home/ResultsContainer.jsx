@@ -1,12 +1,24 @@
 import React from 'react';
 
-function ResultsContainer() {
+const ResultsContainer = ({ countedWords }) => {
+  const loadContent = () => {
+    if (Object.keys(countedWords).length > 0) {
+      return (
+        <table></table>
+      );
+    }
+    return '';
+  };
+
+  const content = loadContent();
+
   return (
     <div>
-      Results Container
+      {content}
     </div>
   );
-}
+};
+
 
 ResultsContainer.propTypes = {
   countedWords: React.PropTypes.object.isRequired,
