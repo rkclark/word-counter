@@ -8,10 +8,12 @@ export default class Home extends React.Component {
     super(props);
     this.state = {
       countedWords: [],
+      loading: false,
     };
 
     this.processTextFile = this.processTextFile.bind(this);
     this.setCountedWords = this.setCountedWords.bind(this);
+    this.setLoading = this.setLoading.bind(this);
   }
 
   componentDidUpdate() {
@@ -21,11 +23,19 @@ export default class Home extends React.Component {
   setCountedWords(data) {
     this.setState({
       countedWords: data,
+      loading: false,
+    });
+  }
+
+  setLoading(bool) {
+    this.setState({
+      loading: bool,
     });
   }
 
   processTextFile(file) {
     console.log('about to processs: ', file);
+    this.setLoading(true);
     const wordCounter = new WordCounter(file, this.setCountedWords);
     wordCounter.returnWordCountArray();
   }
@@ -35,7 +45,7 @@ export default class Home extends React.Component {
     return (
       <div className="home">
         <FileInputContainer processTextFile={this.processTextFile} />
-        <ResultsContainer countedWords={this.state.countedWords} />
+        <ResultsContainer countedWords={this.state.countedWords} loading={this.state.loading} />
       </div>
     );
   }

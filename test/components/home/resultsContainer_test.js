@@ -14,6 +14,7 @@ describe('<ResultsContainer />', () => {
     beforeEach(() => {
       props = {
         countedWords: [],
+        loading: false,
       };
       wrapper = shallow(<ResultsContainer {...props} />);
     });
@@ -38,6 +39,7 @@ describe('<ResultsContainer />', () => {
           { word: 'meerkat', count: 5, prime: true },
           { word: 'simples', count: 1, prime: true },
         ],
+        loading: false,
       };
       wrapper = shallow(<ResultsContainer {...props} />);
     });
@@ -63,6 +65,27 @@ describe('<ResultsContainer />', () => {
       expect(rows.at(0).prop('word')).to.be.a('string');
       expect(rows.at(0).prop('count')).to.be.a('number');
       expect(rows.at(0).prop('prime')).to.be.a('boolean');
+    });
+
+  });
+
+  describe('With loading set to true', () => {
+
+    beforeEach(() => {
+      props = {
+        countedWords: [],
+        loading: true,
+      };
+      wrapper = shallow(<ResultsContainer {...props} />);
+    });
+
+    it('renders successfully', () => {
+      expect(wrapper).to.have.length(1);
+    });
+
+    it('renders a loading icon', () => {
+      const img = wrapper.find('img');
+      expect(img.html()).to.contain('loading-icon.svg');
     });
 
   });

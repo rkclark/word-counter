@@ -3,7 +3,7 @@
 import React from 'react';
 import WordTableRow from './WordTableRow';
 
-const ResultsContainer = ({ countedWords }) => {
+const ResultsContainer = ({ countedWords, loading }) => {
   const renderTableRows = () => {
     return countedWords.map(
       (wordObject, i) =>
@@ -31,11 +31,17 @@ const ResultsContainer = ({ countedWords }) => {
         </div>
       );
     }
+    if (loading) {
+      return (
+        <div className="col-12">
+          <img src="static/loading-icon.svg" alt="loading icon" />
+        </div>
+      );
+    }
     return '';
   };
 
   const content = loadContent();
-
   return (
     <div className="row">
       {content}
@@ -46,6 +52,7 @@ const ResultsContainer = ({ countedWords }) => {
 
 ResultsContainer.propTypes = {
   countedWords: React.PropTypes.array.isRequired,
+  loading: React.PropTypes.bool.isRequired,
 };
 
 export default ResultsContainer;
