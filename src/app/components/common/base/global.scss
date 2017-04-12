@@ -7,3 +7,19 @@ body {
   background-color: $background;
   color: $text-color;
 }
+
+.btn {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  color: $text-color;
+  background-color: $active;
+  transition: 0.5s ease;
+  cursor: pointer;
+  &:hover {
+    background-color: darken($active, 10%);
+  }
+}
+
+.shadow-text {
+  text-shadow: 0px 0px 3px black;
+}

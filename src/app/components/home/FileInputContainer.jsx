@@ -27,7 +27,7 @@ export default class FileInputContainer extends React.Component {
           onDrop={this.onDrop}
           multiple={false}
           accept="text/plain"
-          className="dropzone col-10 offset-1 col-sm-6 offset-sm-3 pt-5"
+          className="dropzone col-10 offset-1 col-sm-6 offset-sm-3 pt-5 shadow-text"
           activeClassName="active-dropzone"
           rejectClassName="reject-dropzone"
         >

@@ -1,17 +1,12 @@
-$dropzone-border: #cfcfcf;
-$dropzone-active: #38B132;
-$dropzone-reject: #cc4545;
-
 .dropzone {
-  border: 2px dashed $dropzone-border;
+  border: 2px dashed $grey-border;
   height: 200px;
   border-radius: 8px;
   transition: 1s ease;
-  text-shadow: 0px 0px 3px black;
 }
 
 .active-dropzone {
-  background-color: $dropzone-active;
+  background-color: $active;
   transition: 1s ease;
 }
 
@@ -21,11 +16,16 @@ $dropzone-reject: #cc4545;
 }
 
 .reject-dropzone {
-  background-color: $dropzone-reject;
+  background-color: $rejected;
   transition: 1s ease;
 }
 
 .reject-dropzone::after {
     content: "Sorry, I can't accept that type of file!";
     font-size: 20px;
+}
+
+.filename {
+  text-decoration: underline;
+  text-decoration-color: $active;
 }
