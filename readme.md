@@ -1,4 +1,4 @@
-# Word Counter
+# Word Counter [![Build Status](https://travis-ci.org/rkclark/word-counter.svg?branch=master)](https://travis-ci.org/rkclark/word-counter)
 
 A React web application that counts all of the words in a .txt file selected by the user. As a bonus, it also displays whether each word count is a prime number!
 
