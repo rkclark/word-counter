@@ -20,11 +20,6 @@ describe('<Home />', () => {
     expect(wrapper).to.have.length(1);
   });
 
-  it('renders a container div', () => {
-    const container = wrapper.find('.container');
-    expect(container).to.have.length(1);
-  });
-
   it('renders a FileInputContainer', () => {
     const container = wrapper.find(FileInputContainer);
     expect(container).to.have.length(1);
